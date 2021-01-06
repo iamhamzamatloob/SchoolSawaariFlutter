@@ -3,7 +3,6 @@ import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
 import 'package:school_sawaari_app/screens/home/bottom_navigation.dart';
-import 'package:school_sawaari_app/screens/otp/otp_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:school_sawaari_app/universal_variables.dart';
 import 'package:school_sawaari_app/widgets/progress_bar.dart';
@@ -178,7 +177,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         labelText: "DOB",
         hintText: "Enter your Date of Birth",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/dob.svg"),
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Discover.svg"),
       ),
     );
   }
