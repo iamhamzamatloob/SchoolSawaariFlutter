@@ -8,7 +8,7 @@ class PCompleteProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Parents'),
+        title: Text('Parent'),
       ),
       body: PBody(),
     );
