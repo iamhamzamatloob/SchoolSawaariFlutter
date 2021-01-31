@@ -1,15 +1,15 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
-import 'package:school_sawaari_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:school_sawaari_app/screens/complete_profile/pcomplete_profile_screen.dart';
 import 'package:school_sawaari_app/methods/firebase_methods.dart';
 import 'package:school_sawaari_app/models/verify_email.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
-
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -19,12 +19,15 @@ class SignUpForm extends StatefulWidget {
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
 
+
   // Strings Starts
   String email;
   String password;
+
   // ignore: non_constant_identifier_names
   String confirm_password;
   bool remember = false;
+
   // Strings Ends
   final List<String> errors = [];
 
@@ -167,7 +170,7 @@ class _SignUpFormState extends State<SignUpForm> {
       decoration: InputDecoration(
         labelText: "Email",
         hintText: "Enter your email",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // If  you are using latest version of flutter then label text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Mail.svg"),
@@ -180,13 +183,15 @@ class _SignUpFormState extends State<SignUpForm> {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
           .then((currentUser) =>
-          Navigator.pushReplacementNamed(context, VerifyEmail.routeName))
+              Navigator.pushReplacementNamed(context, VerifyEmail.routeName))
           .catchError((e) {
-        String message = "Invalid Email!\nThis email is already used by another user";
+        String message =
+            "Invalid Email!\nThis email is already used by another user";
         Snack_Bar.show(context, message);
       });
     } catch (e) {
-      String message = "Invalid Email!\nThis email is already used by another user";
+      String message =
+          "Invalid Email!\nThis email is already used by another user";
       Snack_Bar.show(context, message);
     }
     return "user";

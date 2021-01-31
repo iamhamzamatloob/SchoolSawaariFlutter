@@ -7,26 +7,25 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:school_sawaari_app/universal_variables.dart';
 import 'package:school_sawaari_app/widgets/progress_bar.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
-import 'package:school_sawaari_app/screens/home/bottom_navigation.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
 
-class CompleteProfileForm extends StatefulWidget {
+class PCompleteProfileForm extends StatefulWidget {
   @override
-  _CompleteProfileFormState createState() => _CompleteProfileFormState();
+  _PCompleteProfileFormState createState() => _PCompleteProfileFormState();
 }
 
-class _CompleteProfileFormState extends State<CompleteProfileForm> {
+class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
 
+
   String name;
-  String dob;
+  String cnic;
   String address;
   String phoneNo;
-  String smsCode;
-  String verificationCode;
 
   final auth = FirebaseAuth.instance;
   User user;
@@ -68,7 +67,7 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         children: [
           buildNameFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
-          buildDOBFormField(),
+          buildCNICFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPhoneNumberFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
@@ -77,9 +76,21 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "continue",
-            press: () {
+            press: () async{
               if (_formKey.currentState.validate()) {
+                try {
+                  await FirebaseFirestore.instance.collection('Parents').doc(auth.currentUser.email).set({
+                    'Name': name,
+                    'CNIC': cnic,
+                    'Address': address,
+                    'PhoneNo': phoneNo,
+                    'Email': FirebaseAuth.instance.currentUser.email,
+                  });
                 Navigator.pushNamed(context, BottomNavigation.routeName);
+                }
+                catch (e){
+                  print(e);
+                }
               }
             },
           ),
@@ -106,12 +117,12 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
       },
       decoration: InputDecoration(
         labelText: "Address",
-        hintText: "Enter your phone address",
+        hintText: "Enter your Home address",
         // If  you are using latest version of flutter then lable text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
-        CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
       ),
     );
   }
@@ -144,27 +155,14 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
     );
   }
 
-  InputDatePickerFormField buildDatePicker(){
-    return InputDatePickerFormField(
-      firstDate: DateTime(2019),
-      lastDate: DateTime(2020, 12, 12),
-      initialDate: selectedDate,
-      onDateSubmitted: (date) {
-        setState(() {
-          selectedDate = date;
-        });
-      },
-    );
-  }
-
-  TextFormField buildDOBFormField() {
+  TextFormField buildCNICFormField() {
     return TextFormField(
-      onSaved: (newValue) => dob = newValue,
+      onSaved: (newValue) => cnic = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
           removeError(error: kNamelNullError);
         }
-        dob = value;
+        cnic = value;
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -174,10 +172,11 @@ class _CompleteProfileFormState extends State<CompleteProfileForm> {
         return null;
       },
       decoration: InputDecoration(
-        labelText: "DOB",
-        hintText: "Enter your Date of Birth",
+        labelText: "CNIC",
+        hintText: "Enter your CNIC",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/Discover.svg"),
+        suffixIcon:
+            CustomSurffixIcon(svgIcon: "assets/icons/Question mark.svg"),
       ),
     );
   }

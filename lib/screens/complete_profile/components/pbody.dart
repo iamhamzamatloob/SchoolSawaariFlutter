@@ -3,9 +3,9 @@ import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/size_config.dart';
 import 'package:school_sawaari_app/constants.dart';
 
-import 'complete_profile_form.dart';
+import 'pcomplete_profile_form.dart';
 
-class Body extends StatelessWidget {
+class PBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -13,7 +13,7 @@ class Body extends StatelessWidget {
         width: double.infinity,
         child: Padding(
           padding:
-              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SingleChildScrollView(
             child: Column(
               children: [
@@ -24,7 +24,7 @@ class Body extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.06),
-                CompleteProfileForm(),
+                PCompleteProfileForm(),
                 SizedBox(height: getProportionateScreenHeight(30)),
                 Text(
                   "By continuing your confirm that you agree \nwith our Term and Condition",

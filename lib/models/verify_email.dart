@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/models/new_user.dart';
-import 'package:school_sawaari_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:school_sawaari_app/screens/complete_profile/pcomplete_profile_screen.dart';
+import 'package:school_sawaari_app/screens/registration_success/registration_success_screen.dart';
 import 'package:school_sawaari_app/widgets/progress_bar.dart';
 
 class VerifyEmail extends StatefulWidget {
@@ -58,7 +60,7 @@ class _VerifyEmailState extends State<VerifyEmail> {
     await user.reload();
     if (user.emailVerified) {
       timer.cancel();
-      Navigator.pushReplacementNamed(context, CompleteProfileScreen.routeName);
+      Navigator.pushReplacementNamed(context, RegistrationSuccessScreen.routeName);
       saveNewUser(email, context);
     }
   }

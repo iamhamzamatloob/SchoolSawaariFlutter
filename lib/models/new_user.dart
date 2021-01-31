@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
 import 'package:school_sawaari_app/methods/firebase_methods.dart';
-import 'package:school_sawaari_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:school_sawaari_app/screens/complete_profile/pcomplete_profile_screen.dart';
 
   // ignore: deprecated_member_use
   Future<FirebaseUser> saveNewUser(email,context) async{
@@ -13,7 +13,7 @@ import 'package:school_sawaari_app/screens/complete_profile/complete_profile_scr
        'uid' : uid,
        'status': "User Verified",
     }).then((value) => 
-    Navigator.pushReplacementNamed(context, CompleteProfileScreen.routeName)).catchError((e){
+    Navigator.pushReplacementNamed(context, PCompleteProfileScreen.routeName)).catchError((e){
       print(e);
     });
     return null;

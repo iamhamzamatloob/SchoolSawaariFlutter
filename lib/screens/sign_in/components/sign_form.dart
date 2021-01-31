@@ -1,10 +1,11 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
 import 'package:school_sawaari_app/methods/firebase_methods.dart';
-import 'package:school_sawaari_app/screens/complete_profile/complete_profile_screen.dart';
+import 'package:school_sawaari_app/screens/complete_profile/pcomplete_profile_screen.dart';
 import 'package:school_sawaari_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:school_sawaari_app/screens/home/bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -30,8 +31,6 @@ class _SignFormState extends State<SignForm> {
   String email;
   String password;
   bool remember = false;
-
-
 
   final List<String> errors = [];
 
@@ -85,12 +84,15 @@ class _SignFormState extends State<SignForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
-            text: "Continue",
-            press: () {
+            text: "Sign in",
+            press: () async {
               if (_formKey.currentState.validate()) {
                 _formKey.currentState.save();
                 user = auth.currentUser;
-                signinUser(email, password, context);
+                FirebaseFirestore.instance.terminate();
+                FirebaseFirestore.instance.clearPersistence().then(
+                      (value) => signinUser(email, password, context),
+                    );
               }
             },
           ),
@@ -193,7 +195,7 @@ class _SignFormState extends State<SignForm> {
   // }
   Future<User> signinUser(email, password, context) async {
     try {
-      auth
+      await auth
           .signInWithEmailAndPassword(email: email, password: password)
           .then((value) => startTime())
           .catchError((e) {
@@ -217,7 +219,7 @@ class _SignFormState extends State<SignForm> {
       if (user.emailVerified) {
         Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => BottomNavigation()),
-                (Route<dynamic> route) => false);
+            (Route<dynamic> route) => false);
       } else {
         String title = "Email not verified";
         String content = "Please verify the Email first to SigIn.";

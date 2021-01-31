@@ -1,15 +1,22 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:school_sawaari_app/screens/home/bottom_navigation.dart';
 import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
+import 'methods/firebase_methods.dart';
 import 'theme.dart';
 import 'constants.dart';
 import 'routes.dart';
 
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(MyApp());
+  await Firebase.initializeApp().then((value) {
+    FirebaseFirestore.instance.terminate();
+    FirebaseFirestore.instance.clearPersistence();
+    runApp(MyApp());
+  }
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -20,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: theme(),
-      initialRoute: SplashScreen.routeName,
+      initialRoute: user != null ? BottomNavigation.routeName : SplashScreen.routeName,
       routes: routes,
     );
   }
