@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
-import 'package:school_sawaari_app/screens/home/bottom_navigation.dart';
+import 'package:school_sawaari_app/screens/driver_home/d_bottom_navigation.dart';
+import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:school_sawaari_app/universal_variables.dart';
-import 'package:school_sawaari_app/widgets/progress_bar.dart';
-import 'package:school_sawaari_app/widgets/snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../constants.dart';
@@ -79,14 +77,14 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
             press: () async{
               if (_formKey.currentState.validate()) {
                 try {
-                  await FirebaseFirestore.instance.collection('Parents').doc(auth.currentUser.email).set({
+                  await FirebaseFirestore.instance.collection('Drivers').doc(auth.currentUser.email).set({
                     'Name': name,
                     'CNIC': cnic,
                     'Address': address,
                     'PhoneNo': phoneNo,
                     'Email': FirebaseAuth.instance.currentUser.email,
                   });
-                  Navigator.pushNamed(context, BottomNavigation.routeName);
+                  Navigator.pushNamed(context, DriverBottomNavigation.routeName);
                 }
                 catch (e){
                   print(e);

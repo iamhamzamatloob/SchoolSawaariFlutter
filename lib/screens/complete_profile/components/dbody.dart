@@ -3,7 +3,8 @@ import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/size_config.dart';
 import 'package:school_sawaari_app/constants.dart';
 
-import 'pcomplete_profile_form.dart';
+import 'dcomplete_profile_form.dart';
+
 
 class DBody extends StatelessWidget {
   @override
@@ -20,11 +21,11 @@ class DBody extends StatelessWidget {
                 SizedBox(height: SizeConfig.screenHeight * 0.03),
                 Text("Complete Profile", style: headingStyle),
                 Text(
-                  "Complete your details or continue  \nwith social media",
+                  "Complete your details",
                   textAlign: TextAlign.center,
                 ),
                 SizedBox(height: SizeConfig.screenHeight * 0.06),
-                PCompleteProfileForm(),
+                DCompleteProfileForm(),
                 SizedBox(height: getProportionateScreenHeight(30)),
                 Text(
                   "By continuing your confirm that you agree \nwith our Term and Condition",

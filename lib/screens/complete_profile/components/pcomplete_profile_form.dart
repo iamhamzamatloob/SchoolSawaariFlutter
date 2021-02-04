@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
-import 'package:school_sawaari_app/screens/home/bottom_navigation.dart';
+import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:school_sawaari_app/universal_variables.dart';
-import 'package:school_sawaari_app/widgets/progress_bar.dart';
-import 'package:school_sawaari_app/widgets/snack_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../../../constants.dart';
@@ -86,7 +83,7 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
                     'PhoneNo': phoneNo,
                     'Email': FirebaseAuth.instance.currentUser.email,
                   });
-                Navigator.pushNamed(context, BottomNavigation.routeName);
+                Navigator.pushNamed(context, ParentBottomNavigation.routeName);
                 }
                 catch (e){
                   print(e);
@@ -118,7 +115,7 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
       decoration: InputDecoration(
         labelText: "Address",
         hintText: "Enter your Home address",
-        // If  you are using latest version of flutter then lable text and hint text shown like this
+        // If  you are using latest version of flutter then label text and hint text shown like this
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:

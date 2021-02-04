@@ -73,6 +73,7 @@ class _BodyState extends State<Body> {
                       text: "Continue",
                       press: () {
                         Navigator.pushNamed(context, SignInScreen.routeName);
+                        print(FirebaseAuth.instance.currentUser);
                       },
                     ),
                     Spacer(),

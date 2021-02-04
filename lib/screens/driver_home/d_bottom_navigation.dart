@@ -2,44 +2,41 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:school_sawaari_app/constants.dart';
-import 'package:school_sawaari_app/screens/home/pages/home_page.dart';
-import 'package:school_sawaari_app/screens/home/pages/payment_page.dart';
-import 'package:school_sawaari_app/screens/home/pages/tracking_page.dart';
-import 'package:school_sawaari_app/screens/home/pages/user_profile/user_profile.dart';
+import 'package:school_sawaari_app/screens/parent_home/pages/home_page.dart';
+import 'package:school_sawaari_app/screens/parent_home/pages/payment_page.dart';
+import 'package:school_sawaari_app/screens/parent_home/pages/tracking_page.dart';
+import 'package:school_sawaari_app/screens/parent_home/pages/user_profile/user_profile.dart';
 
-class BottomNavigation extends StatefulWidget {
-  static const String routeName = '/navigation';
+class DriverBottomNavigation extends StatefulWidget {
+  static const String routeName = '/driver_navigation';
 
   @override
-  _BottomNavigationState createState() => _BottomNavigationState();
+  _DriverBottomNavigationState createState() => _DriverBottomNavigationState();
 }
 
-class _BottomNavigationState extends State<BottomNavigation> {
+class _DriverBottomNavigationState extends State<DriverBottomNavigation> {
   GlobalKey _bottomNavigationKey = GlobalKey();
-  int _pageIndex = 0;
+  int _pageIndex = 1;
 
-  final HomePage _homePage = HomePage();
   final TrackingPage _trackingPage = TrackingPage();
   final PaymentPage _paymentPage = PaymentPage();
   final UserPage _userPage = UserPage();
 
-  Widget _showPage = new HomePage();
+  Widget _showPage = new TrackingPage();
 
   Widget _pageChooser(int page){
     switch (page){
+
       case 0:
-        return _homePage;
+        return _paymentPage;
         break;
 
       case 1:
         return _trackingPage;
         break;
 
-      case 2:
-        return _paymentPage;
-        break;
 
-      case 3:
+      case 2:
         return _userPage;
         break;
       default:
@@ -94,7 +91,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             height: 50.0,
             items: [
               Icon(
-                Icons.home,
+                Icons.payment,
                 size: 30.0,
                 color: kPrimaryColor,
               ),
@@ -103,11 +100,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
                 size: 30.0,
                 color: kPrimaryColor,
               ),
-              Icon(
-                Icons.payment,
-                size: 30.0,
-                color: kPrimaryColor,
-              ),
+
               Icon(
                 Icons.person_rounded,
                 size: 30.0,

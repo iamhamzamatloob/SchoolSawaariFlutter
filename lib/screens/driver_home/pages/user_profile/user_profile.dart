@@ -4,10 +4,10 @@ import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/screens/sign_in/sign_in_screen.dart';
 import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
-import 'package:school_sawaari_app/screens/home/pages/user_profile/components/body.dart';
+import 'package:school_sawaari_app/screens/parent_home/pages/user_profile/components/body.dart';
 
-class UserPage extends StatelessWidget {
-  static String routeName = '/user_page';
+class DriverUserPage extends StatelessWidget {
+  static String routeName = '/driver_user_page';
 
   @override
   Widget build(BuildContext context) {
