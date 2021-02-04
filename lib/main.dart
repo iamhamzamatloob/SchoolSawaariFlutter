@@ -40,9 +40,7 @@ class _MyAppState extends State<MyApp> {
                theme: theme(),
                initialRoute: snapshot.data == "Parent"
                    ? ParentBottomNavigation.routeName
-                   : snapshot.data == "Driver"
-                   ? DriverBottomNavigation.routeName
-                   : SplashScreen.routeName,
+                   : DriverBottomNavigation.routeName,
                routes: routes,
              );
            });
