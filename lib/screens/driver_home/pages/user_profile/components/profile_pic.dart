@@ -4,16 +4,16 @@ import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
-class ProfilePic extends StatefulWidget {
-  const ProfilePic({
+class DriverProfilePic extends StatefulWidget {
+  const DriverProfilePic({
     Key key,
   }) : super(key: key);
 
   @override
-  _ProfilePicState createState() => _ProfilePicState();
+  _DriverProfilePicState createState() => _DriverProfilePicState();
 }
 
-class _ProfilePicState extends State<ProfilePic> {
+class _DriverProfilePicState extends State<DriverProfilePic> {
 
   File file;
   Future<void> _takePicture() async {

@@ -6,6 +6,8 @@ import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
 import 'package:school_sawaari_app/screens/parent_home/pages/user_profile/components/body.dart';
 
+import 'components/body.dart';
+
 class DriverUserPage extends StatelessWidget {
   static String routeName = '/driver_user_page';
 
@@ -23,7 +25,7 @@ class DriverUserPage extends StatelessWidget {
         brightness: Brightness.light,
         backgroundColor: Colors.white,
       ),
-      body: Body(),
+      body: DriverBody(),
     );
   }
 }

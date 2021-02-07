@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/constants.dart';
 
-class PaymentPage extends StatefulWidget {
+class DriverPaymentPage extends StatefulWidget {
   final String routeName = '/payment_page';
   @override
-  _PaymentPageState createState() => _PaymentPageState();
+  _DriverPaymentPageState createState() => _DriverPaymentPageState();
 }
 
-class _PaymentPageState extends State<PaymentPage> {
+class _DriverPaymentPageState extends State<DriverPaymentPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

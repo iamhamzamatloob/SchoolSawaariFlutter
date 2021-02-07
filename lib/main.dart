@@ -52,6 +52,5 @@ class _MyAppState extends State<MyApp> {
          initialRoute: SplashScreen.routeName,
          routes: routes,
        );
-
   }
 }

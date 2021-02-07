@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/services.dart';
 import 'package:school_sawaari_app/constants.dart';
-import 'package:school_sawaari_app/screens/parent_home/pages/home_page.dart';
-import 'package:school_sawaari_app/screens/parent_home/pages/payment_page.dart';
+import 'package:school_sawaari_app/screens/driver_home/pages/payment_page.dart';
+import 'package:school_sawaari_app/screens/driver_home/pages/tracking_page.dart';
+import 'package:school_sawaari_app/screens/driver_home/pages/user_profile/user_profile.dart';
 import 'package:school_sawaari_app/screens/parent_home/pages/tracking_page.dart';
-import 'package:school_sawaari_app/screens/parent_home/pages/user_profile/user_profile.dart';
+
 
 class DriverBottomNavigation extends StatefulWidget {
   static const String routeName = '/driver_navigation';
@@ -18,26 +19,26 @@ class _DriverBottomNavigationState extends State<DriverBottomNavigation> {
   GlobalKey _bottomNavigationKey = GlobalKey();
   int _pageIndex = 1;
 
-  final TrackingPage _trackingPage = TrackingPage();
-  final PaymentPage _paymentPage = PaymentPage();
-  final UserPage _userPage = UserPage();
+  final DriverTrackingPage _drivertrackingPage = DriverTrackingPage();
+  final DriverPaymentPage _driverpaymentPage = DriverPaymentPage();
+  final DriverUserPage _driveruserPage = DriverUserPage();
 
-  Widget _showPage = new TrackingPage();
+  Widget _showPage = new DriverTrackingPage();
 
   Widget _pageChooser(int page){
     switch (page){
 
       case 0:
-        return _paymentPage;
+        return _driverpaymentPage;
         break;
 
       case 1:
-        return _trackingPage;
+        return _drivertrackingPage;
         break;
 
 
       case 2:
-        return _userPage;
+        return _driveruserPage;
         break;
       default:
         return  Container(
@@ -53,31 +54,6 @@ class _DriverBottomNavigationState extends State<DriverBottomNavigation> {
         break;
     }
   }
-
-  // static List<Widget> _widgetOptions = <Widget>[
-  //   Text(
-  //     'Home',
-  //     style: TextStyle(fontSize: 25, color: Colors.black),
-  //   ),
-  //   Text(
-  //     'Track',
-  //     style: TextStyle(fontSize: 25, color: Colors.black),
-  //   ),
-  //   Text(
-  //     'Payment',
-  //     style: TextStyle(fontSize: 25, color: Colors.black),
-  //   ),
-  //   Text(
-  //     'User',
-  //     style: TextStyle(fontSize: 25, color: Colors.black),
-  //   ),
-  // ];
-
-  // void _onItemSelected(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {

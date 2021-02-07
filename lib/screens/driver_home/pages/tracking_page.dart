@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/constants.dart';
 
-class TrackingPage extends StatefulWidget {
-  final String routeName = '/tracking_page';
+class DriverTrackingPage extends StatefulWidget {
+  final String routeName = '/driver_tracking_page';
   @override
-  _TrackingPageState createState() => _TrackingPageState();
+  _DriverTrackingPageState createState() => _DriverTrackingPageState();
 }
 
-class _TrackingPageState extends State<TrackingPage> {
+class _DriverTrackingPageState extends State<DriverTrackingPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

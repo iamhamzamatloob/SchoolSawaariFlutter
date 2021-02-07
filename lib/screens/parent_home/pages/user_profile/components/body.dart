@@ -56,9 +56,16 @@ class _BodyState extends State<Body> {
             ProfileMenu(
               icon: 'assets/icons/Log out.svg',
               text: 'Log Out',
-              press:
-                  () {
-                // FirebaseAuth.instance.signOut();
+              press: () async {
+                FirebaseAuth.instance.signOut().whenComplete(() {
+                  // await FirebaseFirestore.instance.terminate();
+                  // await FirebaseFirestore.instance.clearPersistence();
+                  Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => SignInScreen()),
+                  );
+                }).catchError((e) {
+                  Snack_Bar.show(context, e.message);
+                });
               },
             ),
           ],
