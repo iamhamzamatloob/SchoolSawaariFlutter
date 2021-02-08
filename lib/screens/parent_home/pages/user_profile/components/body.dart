@@ -58,11 +58,9 @@ class _BodyState extends State<Body> {
               text: 'Log Out',
               press: () async {
                 FirebaseAuth.instance.signOut().whenComplete(() {
-                  // await FirebaseFirestore.instance.terminate();
-                  // await FirebaseFirestore.instance.clearPersistence();
-                  Navigator.of(context).pushReplacement(
+                  Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (context) => SignInScreen()),
-                  );
+                          (Route<dynamic> route) => false);
                 }).catchError((e) {
                   Snack_Bar.show(context, e.message);
                 });
