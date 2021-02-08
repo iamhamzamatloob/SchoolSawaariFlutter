@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/models/new_user.dart';
-import 'package:school_sawaari_app/screens/complete_profile/pcomplete_profile_screen.dart';
 import 'package:school_sawaari_app/screens/registration_success/registration_success_screen.dart';
 import 'package:school_sawaari_app/widgets/progress_bar.dart';
 
@@ -24,12 +23,12 @@ class _VerifyEmailState extends State<VerifyEmail> {
   @override
   void initState() {
     user = auth.currentUser;
-    if(!user.emailVerified){
-    user.sendEmailVerification();
-    timer = Timer.periodic(Duration(seconds: 2), (timer) {
-      checkEmailVerified();
-    });
-    super.initState();
+    if (!user.emailVerified) {
+      user.sendEmailVerification();
+      timer = Timer.periodic(Duration(seconds: 2), (timer) {
+        checkEmailVerified();
+      });
+      super.initState();
     }
   }
 
@@ -47,11 +46,11 @@ class _VerifyEmailState extends State<VerifyEmail> {
       theme: ThemeData.dark(),
       home: Scaffold(
         body: Center(
-          child: 
+          child:
               // Text('An verification link has been sent to $email.'),
               CircularProgressIndicatorApp(),
-          ),
         ),
+      ),
     );
   }
 
@@ -60,7 +59,8 @@ class _VerifyEmailState extends State<VerifyEmail> {
     await user.reload();
     if (user.emailVerified) {
       timer.cancel();
-      Navigator.pushReplacementNamed(context, RegistrationSuccessScreen.routeName);
+      Navigator.pushReplacementNamed(
+          context, RegistrationSuccessScreen.routeName);
       saveNewUser(email, context);
     }
   }

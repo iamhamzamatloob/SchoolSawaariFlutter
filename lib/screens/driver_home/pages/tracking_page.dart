@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_sawaari_app/constants.dart';
 
 class DriverTrackingPage extends StatefulWidget {
   final String routeName = '/driver_tracking_page';
@@ -23,7 +22,6 @@ class _DriverTrackingPageState extends State<DriverTrackingPage> {
         backgroundColor: Colors.white,
       ),
       body: Container(
-        color: kPrimaryColor,
         child: Center(child: Text('Tracking')),
       ),
     );

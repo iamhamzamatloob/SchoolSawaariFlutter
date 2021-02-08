@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/methods/firebase_methods.dart';
@@ -86,13 +85,22 @@ class _BodyState extends State<Body> {
           width: SizeConfig.screenWidth * 0.6,
           child: DefaultButton(
             text: "Next",
-            press: () async{
+            press: () async {
               // Navigator.pushNamed(context, HomeScreen.routeName);
-              if(variable == 'Parent')
-                Navigator.push(context, MaterialPageRoute(builder: (_) => PCompleteProfileScreen()));
-              else if(variable == 'Driver')
-                Navigator.push(context, MaterialPageRoute(builder: (_) => DCompleteProfileScreen()));
-              await FirebaseFirestore.instance.collection('Users').doc(auth.currentUser.email).update({
+              if (variable == 'Parent')
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => PCompleteProfileScreen()));
+              else if (variable == 'Driver')
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => DCompleteProfileScreen()));
+              await FirebaseFirestore.instance
+                  .collection('Users')
+                  .doc(auth.currentUser.email)
+                  .update({
                 'Role': variable,
               });
             },

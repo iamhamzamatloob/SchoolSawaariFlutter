@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/no_account_text.dart';
-import 'package:school_sawaari_app/components/socal_card.dart';
 import '../../../size_config.dart';
 import 'sign_form.dart';
 

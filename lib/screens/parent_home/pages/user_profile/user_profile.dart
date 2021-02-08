@@ -1,9 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:school_sawaari_app/constants.dart';
-import 'package:school_sawaari_app/screens/sign_in/sign_in_screen.dart';
-import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
-import 'package:school_sawaari_app/widgets/snack_bar.dart';
 import 'package:school_sawaari_app/screens/parent_home/pages/user_profile/components/body.dart';
 
 class UserPage extends StatelessWidget {

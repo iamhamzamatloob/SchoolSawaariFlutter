@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -14,7 +13,6 @@ class DriverProfilePic extends StatefulWidget {
 }
 
 class _DriverProfilePicState extends State<DriverProfilePic> {
-
   File file;
   Future<void> _takePicture() async {
     final picker = ImagePicker();
@@ -22,9 +20,7 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
       source: ImageSource.gallery,
       maxWidth: 600,
     );
-    setState(() {
-
-    });
+    setState(() {});
     file = File(imageFile.path);
   }
 
@@ -33,13 +29,17 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
     return SizedBox(
       height: 115,
       width: 115,
-      child:  Stack(
+      child: Stack(
         fit: StackFit.expand,
+        // ignore: deprecated_member_use
         overflow: Overflow.visible,
         children: [
-          file == null? CircleAvatar(
-            backgroundImage: AssetImage('assets/images/Hamza Profile.png'),
-          ): Image.file(file),
+          file == null
+              ? CircleAvatar(
+                  backgroundImage:
+                      AssetImage('assets/images/Hamza Profile.png'),
+                )
+              : Image.file(file),
           Positioned(
             right: -12,
             bottom: 0,
@@ -63,7 +63,6 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
     );
   }
 }
-
 
 // file == null? CircleAvatar(
 // backgroundImage: AssetImage('assets/images/Hamza Profile.png'),

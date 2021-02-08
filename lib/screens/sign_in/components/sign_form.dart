@@ -46,58 +46,63 @@ class _SignFormState extends State<SignForm> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        initialData: [],
-        future: getRole(email),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
-          return Form(
-            key: _formKey,
-            child: Column(
-              children: [
-                buildEmailFormField(),
-                SizedBox(height: getProportionateScreenHeight(30)),
-                buildPasswordFormField(),
-                SizedBox(height: getProportionateScreenHeight(30)),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: remember,
-                      activeColor: kPrimaryColor,
-                      onChanged: (value) {
-                        setState(() {
-                          remember = value;
-                        });
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          buildEmailFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
+          buildPasswordFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
+          Row(
+            children: [
+              Checkbox(
+                value: remember,
+                activeColor: kPrimaryColor,
+                onChanged: (value) {
+                  setState(() {
+                    remember = value;
+                  });
+                },
+              ),
+              Text("Remember me"),
+              Spacer(),
+              GestureDetector(
+                onTap: () => Navigator.pushNamed(
+                    context, ForgotPasswordScreen.routeName),
+                child: Text(
+                  "Forgot Password",
+                  style: TextStyle(decoration: TextDecoration.underline),
+                ),
+              )
+            ],
+          ),
+          FormError(errors: errors),
+          SizedBox(height: getProportionateScreenHeight(20)),
+          email != null
+              ? FutureBuilder(
+                  initialData: [],
+                  future: getRole(email),
+                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                    return DefaultButton(
+                      text: "Sign in",
+                      press: () async {
+                        if (_formKey.currentState.validate()) {
+                          _formKey.currentState.save();
+                          signinUser(email, password, context, snapshot);
+                        }
                       },
-                    ),
-                    Text("Remember me"),
-                    Spacer(),
-                    GestureDetector(
-                      onTap: () =>
-                          Navigator.pushNamed(
-                              context, ForgotPasswordScreen.routeName),
-                      child: Text(
-                        "Forgot Password",
-                        style: TextStyle(decoration: TextDecoration.underline),
-                      ),
-                    )
-                  ],
-                ),
-                FormError(errors: errors),
-                SizedBox(height: getProportionateScreenHeight(20)),
-                DefaultButton(
-                  text: "Sign in",
-                  press: () async {
-                    if (_formKey.currentState.validate()) {
-                      _formKey.currentState.save();
-                      user = auth.currentUser;
-                      signinUser(email, password, context, snapshot);
-                    }
+                    );
                   },
-                ),
-              ],
-            ),
-          );
-        },
+                )
+              : Text("Enter Email and Password to continue",
+                  style: TextStyle(
+                    color: kPrimaryColor,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  ))
+        ],
+      ),
     );
   }
 
@@ -177,10 +182,12 @@ class _SignFormState extends State<SignForm> {
       if (value.user.emailVerified) {
         snapshot.data == "Parent"
             ? Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => ParentBottomNavigation()),
+                MaterialPageRoute(
+                    builder: (context) => ParentBottomNavigation()),
                 (Route<dynamic> route) => false)
             : Navigator.of(context).pushAndRemoveUntil(
-            MaterialPageRoute(builder: (context) => DriverBottomNavigation()),
+                MaterialPageRoute(
+                    builder: (context) => DriverBottomNavigation()),
                 (Route<dynamic> route) => false);
         print(snapshot.data);
       } else {

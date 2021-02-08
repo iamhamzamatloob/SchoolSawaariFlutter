@@ -3,7 +3,6 @@ import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
 import 'package:school_sawaari_app/screens/driver_home/d_bottom_navigation.dart';
-import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -18,7 +17,6 @@ class DCompleteProfileForm extends StatefulWidget {
 class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
-
 
   String name;
   String cnic;
@@ -74,19 +72,22 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
             text: "continue",
-            press: () async{
+            press: () async {
               if (_formKey.currentState.validate()) {
                 try {
-                  await FirebaseFirestore.instance.collection('Drivers').doc(auth.currentUser.email).set({
+                  await FirebaseFirestore.instance
+                      .collection('Drivers')
+                      .doc(auth.currentUser.email)
+                      .set({
                     'Name': name,
                     'CNIC': cnic,
                     'Address': address,
                     'PhoneNo': phoneNo,
                     'Email': FirebaseAuth.instance.currentUser.email,
                   });
-                  Navigator.pushNamed(context, DriverBottomNavigation.routeName);
-                }
-                catch (e){
+                  Navigator.pushNamed(
+                      context, DriverBottomNavigation.routeName);
+                } catch (e) {
                   print(e);
                 }
               }
@@ -120,7 +121,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
         // if you r using flutter less then 1.20.* then maybe this is not working properly
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
-        CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
       ),
     );
   }
@@ -174,7 +175,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
         hintText: "Enter your CNIC",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
-        CustomSurffixIcon(svgIcon: "assets/icons/Question mark.svg"),
+            CustomSurffixIcon(svgIcon: "assets/icons/Question mark.svg"),
       ),
     );
   }

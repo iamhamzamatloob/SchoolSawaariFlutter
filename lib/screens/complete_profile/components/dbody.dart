@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/size_config.dart';
-import 'package:school_sawaari_app/constants.dart';
 
 import 'dcomplete_profile_form.dart';
-
 
 class DBody extends StatelessWidget {
   @override

@@ -1,7 +1,4 @@
-import 'dart:async';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:school_sawaari_app/screens/splash/components/body.dart';
 import 'package:school_sawaari_app/size_config.dart';
 
@@ -13,12 +10,11 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
-
   @override
   void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     // You have to call it on your starting screen

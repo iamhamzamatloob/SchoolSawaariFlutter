@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_sawaari_app/components/socal_card.dart';
 import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/size_config.dart';
 

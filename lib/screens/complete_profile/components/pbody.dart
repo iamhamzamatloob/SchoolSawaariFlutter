@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/size_config.dart';
-import 'package:school_sawaari_app/constants.dart';
 
 import 'pcomplete_profile_form.dart';
 
@@ -13,7 +12,7 @@ class PBody extends StatelessWidget {
         width: double.infinity,
         child: Padding(
           padding:
-          EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
+              EdgeInsets.symmetric(horizontal: getProportionateScreenWidth(20)),
           child: SingleChildScrollView(
             child: Column(
               children: [

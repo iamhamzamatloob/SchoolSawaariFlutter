@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_sawaari_app/constants.dart';
 
 class PaymentPage extends StatefulWidget {
   final String routeName = '/payment_page';
@@ -23,8 +22,9 @@ class _PaymentPageState extends State<PaymentPage> {
         backgroundColor: Colors.white,
       ),
       body: Container(
-        color: kPrimaryColor,
-        child: Center(child: Text('Payment'),),
+        child: Center(
+          child: Text('Payment'),
+        ),
       ),
     );
   }

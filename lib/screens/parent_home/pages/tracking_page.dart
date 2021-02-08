@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:school_sawaari_app/constants.dart';
 
 class TrackingPage extends StatefulWidget {
   final String routeName = '/tracking_page';
@@ -23,7 +22,6 @@ class _TrackingPageState extends State<TrackingPage> {
         backgroundColor: Colors.white,
       ),
       body: Container(
-        color: kPrimaryColor,
         child: Center(child: Text('Tracking')),
       ),
     );

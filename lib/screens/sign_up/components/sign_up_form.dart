@@ -1,9 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
-import 'package:school_sawaari_app/screens/complete_profile/pcomplete_profile_screen.dart';
 import 'package:school_sawaari_app/methods/firebase_methods.dart';
 import 'package:school_sawaari_app/models/verify_email.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
@@ -18,7 +16,6 @@ class SignUpForm extends StatefulWidget {
 
 class _SignUpFormState extends State<SignUpForm> {
   final _formKey = GlobalKey<FormState>();
-
 
   // Strings Starts
   String email;
