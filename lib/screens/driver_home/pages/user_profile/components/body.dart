@@ -56,8 +56,6 @@ class _DriverBodyState extends State<DriverBody> {
               text: 'Log Out',
               press: () async {
                 FirebaseAuth.instance.signOut().whenComplete(() {
-                  // await FirebaseFirestore.instance.terminate();
-                  // await FirebaseFirestore.instance.clearPersistence();
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(builder: (context) => SignInScreen()),
                   );

@@ -182,6 +182,7 @@ class _SignFormState extends State<SignForm> {
             : Navigator.of(context).pushAndRemoveUntil(
             MaterialPageRoute(builder: (context) => DriverBottomNavigation()),
                 (Route<dynamic> route) => false);
+        print(snapshot.data);
       } else {
         String title = "Email not verified";
         String content = "Please verify the Email first to SigIn.";

@@ -14,8 +14,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp().then((value) {
-    // FirebaseFirestore.instance.terminate();
-    // FirebaseFirestore.instance.clearPersistence();
     runApp(MyApp());
   });
 }
@@ -34,13 +32,17 @@ class _MyAppState extends State<MyApp> {
            initialData: [],
            future: getRole(FirebaseAuth.instance.currentUser.email),
            builder: (BuildContext context, AsyncSnapshot snapshot) {
+             print(snapshot.data);
+             String initRoute;
+
+             initRoute = snapshot.data == "Driver"
+                 ? DriverBottomNavigation.routeName
+                 : ParentBottomNavigation.routeName;
              return MaterialApp(
                debugShowCheckedModeBanner: false,
                title: 'School Sawaari',
                theme: theme(),
-               initialRoute: snapshot.data == "Parent"
-                   ? ParentBottomNavigation.routeName
-                   : DriverBottomNavigation.routeName,
+               initialRoute: initRoute,
                routes: routes,
              );
            });

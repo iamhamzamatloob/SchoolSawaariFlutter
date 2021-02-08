@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-final auth = FirebaseAuth.instance;
+final FirebaseAuth auth = FirebaseAuth.instance;
 String uid = auth.currentUser.uid.toString();
 User user = auth.currentUser;
 String role;
