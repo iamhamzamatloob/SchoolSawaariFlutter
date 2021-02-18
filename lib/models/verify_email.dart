@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/models/new_user.dart';
 import 'package:school_sawaari_app/screens/registration_success/registration_success_screen.dart';
 import 'package:school_sawaari_app/widgets/progress_bar.dart';
@@ -43,12 +45,32 @@ class _VerifyEmailState extends State<VerifyEmail> {
     email = auth.currentUser.email;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
       home: Scaffold(
-        body: Center(
-          child:
-              // Text('An verification link has been sent to $email.'),
-              CircularProgressIndicatorApp(),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            SpinKitDoubleBounce(
+              color: kPrimaryColor,
+            ),
+            SizedBox(height: 20),
+            Text(
+              "Verification link has been sent to: ",
+              style: TextStyle(
+                  fontWeight: FontWeight.w500,
+                  color: Colors.black.withOpacity(0.6)),
+            ),
+            Text(
+              "$email",
+              style:
+              TextStyle(fontWeight: FontWeight.w500, color: kPrimaryColor),
+            ),
+            SizedBox(height: 5),
+            Text("( Verify first to continue! )",
+                style: TextStyle(
+                    fontWeight: FontWeight.bold, color: Colors.green)),
+          ],
         ),
       ),
     );

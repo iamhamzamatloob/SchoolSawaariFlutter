@@ -25,7 +25,7 @@ class _MyAppState extends State<MyApp> {
   String initRoute;
   @override
   Widget build(BuildContext context) {
-    if (FirebaseAuth.instance.currentUser != null)
+    if (FirebaseAuth.instance.currentUser != null && user.emailVerified)
       return FutureBuilder(
           future: getRole(FirebaseAuth.instance.currentUser.email),
           builder: (BuildContext context, AsyncSnapshot snapshot) {
