@@ -22,6 +22,9 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
   String cnic;
   String address;
   String phoneNo;
+  String vehicleRegistrationNo;
+  String vehicleNumberPlate;
+  String drivingLicenseNumber;
 
   final auth = FirebaseAuth.instance;
   User user;
@@ -67,11 +70,17 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
           SizedBox(height: getProportionateScreenHeight(30)),
           buildPhoneNumberFormField(),
           SizedBox(height: getProportionateScreenHeight(30)),
+          buildVehicleRegistrationFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
+          buildVehicleNumberPlateFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
+          buildDrivingLicenseNumberFormField(),
+          SizedBox(height: getProportionateScreenHeight(30)),
           buildAddressFormField(),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text: "continue",
+            text: "Continue",
             press: () async {
               if (_formKey.currentState.validate()) {
                 try {
@@ -83,6 +92,9 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
                     'CNIC': cnic,
                     'Address': address,
                     'PhoneNo': phoneNo,
+                    'VehicleRegistrationNumber': vehicleRegistrationNo,
+                    'VehiclePlateNumber': vehicleNumberPlate,
+                    'DrivingLicenseNumber': drivingLicenseNumber,
                     'Email': FirebaseAuth.instance.currentUser.email,
                   });
                   Navigator.pushNamed(
@@ -126,6 +138,81 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
     );
   }
 
+  TextFormField buildDrivingLicenseNumberFormField() {
+    return TextFormField(
+      onSaved: (newValue) => drivingLicenseNumber = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kDrivingLicenseNumber);
+        }
+        drivingLicenseNumber = value;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kDrivingLicenseNumber);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Driving License Number",
+        hintText: "Enter your DL number",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/driving-license.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildVehicleNumberPlateFormField() {
+    return TextFormField(
+      onSaved: (newValue) => vehicleNumberPlate = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kNumberPlateError);
+        }
+        vehicleNumberPlate = value;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kNumberPlateError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Vehicle Number Plate",
+        hintText: "Enter your vehicle plate number",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/license-plate.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildVehicleRegistrationFormField() {
+    return TextFormField(
+      onSaved: (newValue) => vehicleRegistrationNo = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kRegistrationError);
+        }
+        vehicleRegistrationNo = value;
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kRegistrationError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "Vehicle Registration",
+        hintText: "Enter your vehicle registration number",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSurffixIcon(svgIcon: "assets/icons/van.svg"),
+      ),
+    );
+  }
+
   TextFormField buildPhoneNumberFormField() {
     return TextFormField(
       initialValue: '+92',
@@ -159,13 +246,13 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
       onSaved: (newValue) => cnic = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: kNamelNullError);
+          removeError(error: kCNICError);
         }
         cnic = value;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: kNamelNullError);
+          addError(error: kCNICError);
           return "";
         }
         return null;
@@ -175,7 +262,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
         hintText: "Enter your CNIC",
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon:
-            CustomSurffixIcon(svgIcon: "assets/icons/Question mark.svg"),
+            CustomSurffixIcon(svgIcon: "assets/icons/card.svg"),
       ),
     );
   }
