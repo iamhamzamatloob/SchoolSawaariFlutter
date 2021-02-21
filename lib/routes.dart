@@ -7,6 +7,7 @@ import 'package:school_sawaari_app/screens/otp/otp_screen.dart';
 import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:school_sawaari_app/screens/registration_success/registration_success_screen.dart';
 import 'package:school_sawaari_app/screens/sign_in/sign_in_screen.dart';
+import 'package:school_sawaari_app/screens/sign_up/verificationts.dart';
 import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
 
 import 'screens/sign_up/sign_up_screen.dart';
@@ -25,4 +26,5 @@ final Map<String, WidgetBuilder> routes = {
   VerifyEmail.routeName: (context) => VerifyEmail(),
   RegistrationSuccessScreen.routeName: (context) => RegistrationSuccessScreen(),
   DriverBottomNavigation.routeName: (context) => DriverBottomNavigation(),
+  Verifications.routeName: (context) => Verifications(),
 };

@@ -5,6 +5,7 @@ import 'package:school_sawaari_app/components/form_error.dart';
 import 'package:school_sawaari_app/screens/driver_home/d_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:school_sawaari_app/screens/sign_up/verificationts.dart';
 
 import '../../../constants.dart';
 import '../../../size_config.dart';
@@ -82,6 +83,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
           DefaultButton(
             text: "Continue",
             press: () async {
+              // Navigator.pushNamed(context, Verifications.routeName);
               if (_formKey.currentState.validate()) {
                 try {
                   await FirebaseFirestore.instance
@@ -98,7 +100,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
                     'Email': FirebaseAuth.instance.currentUser.email,
                   });
                   Navigator.pushNamed(
-                      context, DriverBottomNavigation.routeName);
+                      context, Verifications.routeName);
                 } catch (e) {
                   print(e);
                 }
