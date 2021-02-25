@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
@@ -98,6 +99,7 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+      keyboardType: TextInputType.streetAddress,
       onSaved: (newValue) => address = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -154,6 +156,8 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
 
   TextFormField buildCNICFormField() {
     return TextFormField(
+      keyboardType: TextInputType.number,
+      maxLength: 13,
       onSaved: (newValue) => cnic = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -180,6 +184,7 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
 
   TextFormField buildNameFormField() {
     return TextFormField(
+      keyboardType: TextInputType.name,
       onSaved: (newValue) => name = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
