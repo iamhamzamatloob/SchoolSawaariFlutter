@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
@@ -83,7 +84,6 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
           DefaultButton(
             text: "Continue",
             press: () async {
-              // Navigator.pushNamed(context, Verifications.routeName);
               if (_formKey.currentState.validate()) {
                 try {
                   await FirebaseFirestore.instance
@@ -99,6 +99,8 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
                     'DrivingLicenseNumber': drivingLicenseNumber,
                     'Email': FirebaseAuth.instance.currentUser.email,
                   });
+                  FirebaseAuth.instance.currentUser.updateProfile(displayName: name);
+                  //Confusion
                   Navigator.pushNamed(
                       context, Verifications.routeName);
                 } catch (e) {
@@ -114,6 +116,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   TextFormField buildAddressFormField() {
     return TextFormField(
+      keyboardType: TextInputType.streetAddress,
       onSaved: (newValue) => address = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -142,6 +145,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   TextFormField buildDrivingLicenseNumberFormField() {
     return TextFormField(
+      keyboardType: TextInputType.text,
       onSaved: (newValue) => drivingLicenseNumber = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -167,6 +171,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   TextFormField buildVehicleNumberPlateFormField() {
     return TextFormField(
+      keyboardType: TextInputType.text,
       onSaved: (newValue) => vehicleNumberPlate = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -192,6 +197,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   TextFormField buildVehicleRegistrationFormField() {
     return TextFormField(
+      keyboardType: TextInputType.text,
       onSaved: (newValue) => vehicleRegistrationNo = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -245,6 +251,8 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   TextFormField buildCNICFormField() {
     return TextFormField(
+      maxLength: 13,
+      keyboardType: TextInputType.phone,
       onSaved: (newValue) => cnic = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
@@ -271,6 +279,7 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   TextFormField buildNameFormField() {
     return TextFormField(
+      keyboardType: TextInputType.name,
       onSaved: (newValue) => name = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {

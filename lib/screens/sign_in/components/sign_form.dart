@@ -8,6 +8,7 @@ import 'package:school_sawaari_app/screens/forgot_password/forgot_password_scree
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:school_sawaari_app/widgets/alert_dialog.dart';
+import 'package:school_sawaari_app/widgets/loading_alert_dailog.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
 
 import '../../../components/default_button.dart';
@@ -89,6 +90,7 @@ class _SignFormState extends State<SignForm> {
                       press: () async {
                         if (_formKey.currentState.validate()) {
                           _formKey.currentState.save();
+                          showLoadingDialog(context);
                           signinUser(email, password, context, snapshot);
                         }
                       },
@@ -189,13 +191,14 @@ class _SignFormState extends State<SignForm> {
                 MaterialPageRoute(
                     builder: (context) => DriverBottomNavigation()),
                 (Route<dynamic> route) => false);
-        print(snapshot.data);
+        // print(snapshot.data);
       } else {
         String title = "Email not verified";
         String content = "Please verify the Email first to SigIn.";
         verifyEmailDialog(context, title, content);
       }
     }).catchError((e) {
+      Navigator.pop(context);
       Snack_Bar.show(context, e.message);
     });
   }

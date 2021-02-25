@@ -396,11 +396,16 @@ class _VerificationsState extends State<Verifications> {
                       downUrl3 == null ||
                       downUrl4 == null) {
                     print("Please add all pictures!");
+                    // print(downUrl);
+                    // print(downUrl1);
+                    // print(downUrl2);
+                    // print(downUrl3);
+                    // print(downUrl4);
                   }
                   else
                     {
                       updateData();
-
+                      Navigator.pushReplacementNamed(context, DriverBottomNavigation.routeName);
                     }
                 },
               ),
@@ -514,6 +519,7 @@ class _VerificationsState extends State<Verifications> {
       'LICENSE FS': downUrl3,
       'LICENSE BS': downUrl4,
     }).then((value) => {
+      FirebaseAuth.instance.currentUser.updateProfile(photoURL: downUrl2),
       Navigator.pushReplacementNamed(context, DriverBottomNavigation.routeName)
     });
   }
