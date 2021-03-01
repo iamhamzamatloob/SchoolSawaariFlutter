@@ -79,8 +79,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
             storeAddress = snapshot.data['Address'];
             storeDrivingLicenseNumber = snapshot.data['DrivingLicenseNumber'];
             storeVehicleNumberPlate = snapshot.data['VehiclePlateNumber'];
-            storeVehicleRegistrationNo =
-                snapshot.data['VehicleRegistrationNumber'];
+            storeVehicleRegistrationNo = snapshot.data['VehicleRegistrationNumber'];
             return SizedBox(
               width: double.infinity,
               child: Padding(
@@ -191,7 +190,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
           if (value.isNotEmpty) {
             removeError(error: kAddressNullError);
             address = value;
-          } else {}
+          }
         },
         validator: (value) {
           if (value.isEmpty) {
@@ -219,7 +218,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
         if (value.isNotEmpty) {
           removeError(error: kDrivingLicenseNumberError);
           drivingLicenseNumber = value;
-        } else {}
+        }
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -246,7 +245,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
         if (value.isNotEmpty) {
           removeError(error: kNumberPlateError);
           vehicleNumberPlate = value;
-        } else {}
+        }
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -273,7 +272,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
         if (value.isNotEmpty) {
           removeError(error: kRegistrationError);
           vehicleRegistrationNo = value;
-        } else {}
+        }
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -300,7 +299,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
           phoneNo = value;
-        } else {}
+        }
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -327,7 +326,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
         if (value.isNotEmpty) {
           removeError(error: kCNICError);
           cnic = value;
-        } else {}
+        }
       },
       validator: (value) {
         if (value.isEmpty) {
@@ -353,7 +352,7 @@ class _DriverEditProfileState extends State<DriverEditProfile> {
         if (value.isNotEmpty) {
           removeError(error: kNamelNullError);
           name = value;
-        } else {}
+        }
       },
       validator: (value) {
         if (value.isEmpty) {

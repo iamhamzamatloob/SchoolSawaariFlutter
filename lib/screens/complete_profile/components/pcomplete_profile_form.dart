@@ -27,13 +27,6 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
 
   final auth = FirebaseAuth.instance;
   User user;
-  DateTime selectedDate;
-
-  @override
-  initState() {
-    super.initState();
-    selectedDate = DateTime.now();
-  }
 
   void nextField(String value, FocusNode focusNode) {
     if (value.length == 1) {
@@ -97,31 +90,37 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
     );
   }
 
-  TextFormField buildAddressFormField() {
-    return TextFormField(
-      keyboardType: TextInputType.streetAddress,
-      onSaved: (newValue) => address = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kAddressNullError);
-        }
-        address = value;
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kAddressNullError);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "Address",
-        hintText: "Enter your Home address",
-        // If  you are using latest version of flutter then label text and hint text shown like this
-        // if you r using flutter less then 1.20.* then maybe this is not working properly
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon:
-            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+  Container buildAddressFormField() {
+    return Container(
+      height: 150,
+      child: TextFormField(
+        expands: true,
+        minLines: null,
+        maxLines: null,
+        keyboardType: TextInputType.streetAddress,
+        onSaved: (newValue) => address = newValue,
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            removeError(error: kAddressNullError);
+          }
+          address = value;
+        },
+        validator: (value) {
+          if (value.isEmpty) {
+            addError(error: kAddressNullError);
+            return "";
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          labelText: "Address",
+          hintText: "Enter your Home address",
+          // If  you are using latest version of flutter then label text and hint text shown like this
+          // if you r using flutter less then 1.20.* then maybe this is not working properly
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon:
+              CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+        ),
       ),
     );
   }
@@ -161,13 +160,13 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
       onSaved: (newValue) => cnic = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: kNamelNullError);
+          removeError(error: kCNICError);
         }
         cnic = value;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: kNamelNullError);
+          addError(error: kCNICError);
           return "";
         }
         return null;

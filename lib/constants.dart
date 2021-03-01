@@ -36,7 +36,7 @@ const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
 const String kRegistrationError = "Enter registration number";
 const String kNumberPlateError = "Enter vehicle plate number";
-const String kDrivingLicenseNumberError = "Please Enter your license number";
+const String kDrivingLicenseNumberError = "Please Enter license number";
 const String kCNICError = "Please Enter your CNIC";
 
 final otpInputDecoration = InputDecoration(

@@ -39,7 +39,7 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
         children: [
           user.photoURL == null || user.photoURL == ""
               ? CircleAvatar(
-                  backgroundColor: kPrimaryColor,
+                  backgroundColor: kPrimaryColor.withOpacity(0.8),
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(70),
                     child: Image.asset(
@@ -53,8 +53,9 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
               : CircleAvatar(
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(70),
-                    child: Image.network(
-                        FirebaseAuth.instance.currentUser.photoURL,
+                    child: FadeInImage.assetNetwork(
+                        image: FirebaseAuth.instance.currentUser.photoURL,
+                        placeholder: '',
                         width: 110,
                         height: 110,
                         fit: BoxFit.cover),

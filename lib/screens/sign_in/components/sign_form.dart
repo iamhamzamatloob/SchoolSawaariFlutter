@@ -1,8 +1,8 @@
 import 'dart:async';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
-import 'package:school_sawaari_app/methods/firebase_methods.dart';
 import 'package:school_sawaari_app/screens/driver_home/d_bottom_navigation.dart';
 import 'package:school_sawaari_app/screens/forgot_password/forgot_password_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -22,6 +22,8 @@ class SignForm extends StatefulWidget {
 
 class _SignFormState extends State<SignForm> {
   final _formKey = GlobalKey<FormState>();
+
+  String _role;
 
   final auth = FirebaseAuth.instance;
   User user;
@@ -80,29 +82,22 @@ class _SignFormState extends State<SignForm> {
           ),
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(20)),
-          email != null
-              ? FutureBuilder(
-                  initialData: [],
-                  future: getRole(email),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    return DefaultButton(
-                      text: "Sign in",
-                      press: () async {
-                        if (_formKey.currentState.validate()) {
-                          _formKey.currentState.save();
-                          showLoadingDialog(context);
-                          signinUser(email, password, context, snapshot);
-                        }
-                      },
-                    );
-                  },
-                )
-              : Text("Enter Email and Password to continue",
-                  style: TextStyle(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ))
+      DefaultButton(
+        text: "Sign in",
+        press: () async {
+          if (_formKey.currentState.validate()) {
+            _formKey.currentState.save();
+            FirebaseFirestore.instance.collection('Users').doc(email).get().then((value) =>
+            {
+              _role = value['Role'],
+            showLoadingDialog(context),
+                signinUser(email, password, context),
+            }).catchError((e){
+              addError(error: "Please enter valid email");
+            });
+          }
+        },
+      ),
         ],
       ),
     );
@@ -177,12 +172,12 @@ class _SignFormState extends State<SignForm> {
     );
   }
 
-  Future signinUser(email, password, context, AsyncSnapshot snapshot) async {
+  Future signinUser(email, password, context) async {
     auth
         .signInWithEmailAndPassword(email: email, password: password)
         .then((value) {
       if (value.user.emailVerified) {
-        snapshot.data == "Parent"
+        _role == "Parent"
             ? Navigator.of(context).pushAndRemoveUntil(
                 MaterialPageRoute(
                     builder: (context) => ParentBottomNavigation()),
