@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import 'package:school_sawaari_app/constants.dart';
 
 showLoadingDialog(context) {
   AlertDialog alert = AlertDialog(

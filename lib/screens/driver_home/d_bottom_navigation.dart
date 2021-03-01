@@ -4,7 +4,6 @@ import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/screens/driver_home/pages/payment_page.dart';
 import 'package:school_sawaari_app/screens/driver_home/pages/tracking_page.dart';
 import 'package:school_sawaari_app/screens/driver_home/pages/user_profile/user_profile.dart';
-import 'package:school_sawaari_app/widgets/loading_alert_dailog.dart';
 
 class DriverBottomNavigation extends StatefulWidget {
   static String routeName = '/driver_navigation';

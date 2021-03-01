@@ -1,7 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
-import 'package:school_sawaari_app/screens/sign_up/verificationts.dart';
 import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
 import 'methods/firebase_methods.dart';
 import 'theme.dart';

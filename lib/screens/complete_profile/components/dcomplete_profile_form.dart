@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/components/custom_surfix_icon.dart';
 import 'package:school_sawaari_app/components/default_button.dart';
 import 'package:school_sawaari_app/components/form_error.dart';
-import 'package:school_sawaari_app/screens/driver_home/d_bottom_navigation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:school_sawaari_app/screens/sign_up/verificationts.dart';
@@ -30,13 +29,6 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
 
   final auth = FirebaseAuth.instance;
   User user;
-  DateTime selectedDate;
-
-  @override
-  initState() {
-    super.initState();
-    selectedDate = DateTime.now();
-  }
 
   void nextField(String value, FocusNode focusNode) {
     if (value.length == 1) {
@@ -149,13 +141,13 @@ class _DCompleteProfileFormState extends State<DCompleteProfileForm> {
       onSaved: (newValue) => drivingLicenseNumber = newValue,
       onChanged: (value) {
         if (value.isNotEmpty) {
-          removeError(error: kDrivingLicenseNumber);
+          removeError(error: kDrivingLicenseNumberError);
         }
         drivingLicenseNumber = value;
       },
       validator: (value) {
         if (value.isEmpty) {
-          addError(error: kDrivingLicenseNumber);
+          addError(error: kDrivingLicenseNumberError);
           return "";
         }
         return null;

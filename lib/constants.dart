@@ -34,9 +34,9 @@ const String kMatchPassError = "Passwords don't match";
 const String kNamelNullError = "Please Enter your name";
 const String kPhoneNumberNullError = "Please Enter your phone number";
 const String kAddressNullError = "Please Enter your address";
-const String kRegistrationError = "Please Enter your vehicle registration number";
-const String kNumberPlateError = "Please Enter your vehicle";
-const String kDrivingLicenseNumber = "Please Enter your license number";
+const String kRegistrationError = "Enter registration number";
+const String kNumberPlateError = "Enter vehicle plate number";
+const String kDrivingLicenseNumberError = "Please Enter your license number";
 const String kCNICError = "Please Enter your CNIC";
 
 final otpInputDecoration = InputDecoration(

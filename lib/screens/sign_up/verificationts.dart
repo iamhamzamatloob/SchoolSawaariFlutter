@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:school_sawaari_app/screens/driver_home/d_bottom_navigation.dart';
 import 'package:school_sawaari_app/size_config.dart';
-import 'package:school_sawaari_app/widgets/snack_bar.dart';
 
 import '../../constants.dart';
 
@@ -40,7 +39,7 @@ class _VerificationsState extends State<Verifications> {
       appBar: AppBar(
         title: Text(
           "Documents Verification",
-          style: TextStyle(color: kPrimaryColor, fontWeight: FontWeight.bold),
+          style: TextStyle(color: Color(0XFF8B8B8B),),
         ),
         elevation: 2,
         centerTitle: true,

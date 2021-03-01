@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:school_sawaari_app/screens/driver_home/pages/user_profile/components/profile_menu.dart';
 import 'package:school_sawaari_app/screens/driver_home/pages/user_profile/components/profile_pic.dart';
+import 'package:school_sawaari_app/screens/edit_profiles/driver_edit_profile.dart';
 import 'package:school_sawaari_app/screens/sign_in/sign_in_screen.dart';
 import 'package:school_sawaari_app/widgets/snack_bar.dart';
 
@@ -26,8 +27,10 @@ class _DriverBodyState extends State<DriverBody> {
             ),
             DriverProfileMenu(
               icon: 'assets/icons/User Icon.svg',
-              text: 'My Account',
-              press: () {},
+              text: 'Edit Profile',
+              press: () {
+                Navigator.pushNamed(context, DriverEditProfile.routeName);
+              },
             ),
             DriverProfileMenu(
               icon: 'assets/icons/Settings.svg',

@@ -1,7 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
 import 'package:school_sawaari_app/constants.dart';
@@ -19,15 +17,15 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
   File file;
   User user = FirebaseAuth.instance.currentUser;
 
-  Future<void> _takePicture() async {
-    final picker = ImagePicker();
-    final imageFile = await picker.getImage(
-      source: ImageSource.gallery,
-      maxWidth: 600,
-    );
-    setState(() {});
-    file = File(imageFile.path);
-  }
+  // Future<void> _takePicture() async {
+  //   final picker = ImagePicker();
+  //   final imageFile = await picker.getImage(
+  //     source: ImageSource.gallery,
+  //     maxWidth: 600,
+  //   );
+  //   setState(() {});
+  //   file = File(imageFile.path);
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -62,24 +60,24 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
                         fit: BoxFit.cover),
                   ),
                 ),
-          Positioned(
-            right: -12,
-            bottom: 0,
-            child: SizedBox(
-              height: 46,
-              width: 46,
-              child: FlatButton(
-                padding: EdgeInsets.zero,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(50),
-                  side: BorderSide(color: Colors.white),
-                ),
-                color: Color(0xFFF5F6F9),
-                onPressed: _takePicture,
-                child: SvgPicture.asset('assets/icons/Camera Icon.svg'),
-              ),
-            ),
-          ),
+          // Positioned(
+          //   right: -12,
+          //   bottom: 0,
+          //   child: SizedBox(
+          //     height: 46,
+          //     width: 46,
+          //     child: FlatButton(
+          //       padding: EdgeInsets.zero,
+          //       shape: RoundedRectangleBorder(
+          //         borderRadius: BorderRadius.circular(50),
+          //         side: BorderSide(color: Colors.white),
+          //       ),
+          //       color: Color(0xFFF5F6F9),
+          //       onPressed: _takePicture,
+          //       child: SvgPicture.asset('assets/icons/Camera Icon.svg'),
+          //     ),
+          //   ),
+          // ),
         ],
       ),
     );

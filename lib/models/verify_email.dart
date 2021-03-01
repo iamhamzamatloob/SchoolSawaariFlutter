@@ -6,7 +6,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/models/new_user.dart';
 import 'package:school_sawaari_app/screens/registration_success/registration_success_screen.dart';
-import 'package:school_sawaari_app/widgets/progress_bar.dart';
 
 class VerifyEmail extends StatefulWidget {
   VerifyEmail({Key key}) : super(key: key);

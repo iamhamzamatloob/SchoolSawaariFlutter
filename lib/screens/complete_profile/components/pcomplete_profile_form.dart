@@ -73,7 +73,7 @@ class _PCompleteProfileFormState extends State<PCompleteProfileForm> {
           FormError(errors: errors),
           SizedBox(height: getProportionateScreenHeight(40)),
           DefaultButton(
-            text: "continue",
+            text: "Continue",
             press: () async{
               if (_formKey.currentState.validate()) {
                 try {

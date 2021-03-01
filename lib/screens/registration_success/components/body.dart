@@ -12,7 +12,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  int radioValue = 0;
+  int radioValue;
   String variable;
 
   void handleRadioValueChanged(int value) {
