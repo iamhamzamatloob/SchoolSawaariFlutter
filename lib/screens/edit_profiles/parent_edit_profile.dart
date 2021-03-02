@@ -149,30 +149,36 @@ class _ParentEditProfileState extends State<ParentEditProfile> {
     );
   }
 
-  TextFormField buildAddressFormField() {
-    return TextFormField(
-      initialValue: storeAddress,
-      keyboardType: TextInputType.streetAddress,
-      onSaved: (newValue) => address = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kAddressNullError);
-          address = value;
-        }
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kAddressNullError);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "Address",
-        hintText: "Enter your Home address",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon:
-            CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+  Container buildAddressFormField() {
+    return Container(
+      height: 150,
+      child: TextFormField(
+        expands: true,
+        minLines: null,
+        maxLines: null,
+        initialValue: storeAddress,
+        keyboardType: TextInputType.streetAddress,
+        onSaved: (newValue) => address = newValue,
+        onChanged: (value) {
+          if (value.isNotEmpty) {
+            removeError(error: kAddressNullError);
+            address = value;
+          }
+        },
+        validator: (value) {
+          if (value.isEmpty) {
+            addError(error: kAddressNullError);
+            return "";
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          labelText: "Address",
+          hintText: "Enter your Home address",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon:
+              CustomSurffixIcon(svgIcon: "assets/icons/Location point.svg"),
+        ),
       ),
     );
   }

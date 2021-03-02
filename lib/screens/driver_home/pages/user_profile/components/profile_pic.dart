@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'dart:io';
-
 import 'package:school_sawaari_app/constants.dart';
 
 class DriverProfilePic extends StatefulWidget {
@@ -14,19 +13,40 @@ class DriverProfilePic extends StatefulWidget {
 }
 
 class _DriverProfilePicState extends State<DriverProfilePic> {
-  File file;
+
+  // final email = FirebaseAuth.instance.currentUser.email;
+  // var downUrl2;
+  //
+  // File file;
   User user = FirebaseAuth.instance.currentUser;
 
-  // Future<void> _takePicture() async {
-  //   final picker = ImagePicker();
-  //   final imageFile = await picker.getImage(
-  //     source: ImageSource.gallery,
-  //     maxWidth: 600,
-  //   );
-  //   setState(() {});
-  //   file = File(imageFile.path);
+  // Future<void> takePicture() async {
+  //   File image = await ImagePicker.pickImage(
+  //       source: ImageSource.gallery, imageQuality: 50);
+  //
+  //   setState(() {
+  //     file = image;
+  //     uploadProfilePhoto();
+  //   });
   // }
 
+  // uploadProfilePhoto() async{
+  //   showLoadingDialog(context);
+  //   final sref2 = FirebaseStorage.instance.ref().child('User Photo/$email.jpg');
+  //   sref2.putFile(file);
+  //   //ignore: unnecessary_cast
+  //   downUrl2 = await sref2.getDownloadURL() as String;
+  //   FirebaseAuth.instance.currentUser.updateProfile(photoURL: downUrl2);
+  //   FirebaseFirestore.instance.collection('Users').doc(email).update({
+  //     'User Photo': downUrl2,
+  //   }).then((value) => setState((){
+  //     Navigator.pop(context);
+  //     setState(() {
+  //       FirebaseAuth.instance.currentUser.photoURL;
+  //     });
+  //
+  //   }));
+  // }
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -37,48 +57,27 @@ class _DriverProfilePicState extends State<DriverProfilePic> {
         // ignore: deprecated_member_use
         overflow: Overflow.visible,
         children: [
-          user.photoURL == null || user.photoURL == ""
-              ? CircleAvatar(
+           CircleAvatar(
                   backgroundColor: kPrimaryColor.withOpacity(0.8),
-                  child: ClipRRect(
+                  child: user.photoURL == null || user.photoURL == "" ?
+                  ClipRRect(
                     borderRadius: BorderRadius.circular(70),
                     child: Image.asset(
-                      'assets/images/Hamza Profile.png',
+                      'assets/images/User.jpeg',
                       width: 110,
                       height: 110,
                       fit: BoxFit.cover,
                     ),
-                  ),
-                )
-              : CircleAvatar(
-                  child: ClipRRect(
+                  ) : ClipRRect(
                     borderRadius: BorderRadius.circular(70),
                     child: FadeInImage.assetNetwork(
                         image: FirebaseAuth.instance.currentUser.photoURL,
-                        placeholder: '',
+                        placeholder: 'assets/images/Bubble-Loader-Icon.gif',
                         width: 110,
                         height: 110,
                         fit: BoxFit.cover),
                   ),
                 ),
-          // Positioned(
-          //   right: -12,
-          //   bottom: 0,
-          //   child: SizedBox(
-          //     height: 46,
-          //     width: 46,
-          //     child: FlatButton(
-          //       padding: EdgeInsets.zero,
-          //       shape: RoundedRectangleBorder(
-          //         borderRadius: BorderRadius.circular(50),
-          //         side: BorderSide(color: Colors.white),
-          //       ),
-          //       color: Color(0xFFF5F6F9),
-          //       onPressed: _takePicture,
-          //       child: SvgPicture.asset('assets/icons/Camera Icon.svg'),
-          //     ),
-          //   ),
-          // ),
         ],
       ),
     );

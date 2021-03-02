@@ -248,7 +248,7 @@ class _VerificationsState extends State<Verifications> {
                 ),
               ),
               Text(
-                'This photo will not be used as your profile photo',
+                'This photo will be used as your profile photo',
                 style: TextStyle(
                     fontSize: 14,
                     color: Colors.green,
