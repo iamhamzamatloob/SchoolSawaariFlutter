@@ -39,6 +39,9 @@ dependencies:
   flutter_spinkit:
   firebase_storage:
   google_maps_flutter: ^1.2.0
+  geolocator: ^6.1.1
+  http: ^0.12.2
+  provider: ^4.3.2+2
 
 dev_dependencies:
   flutter_test:
