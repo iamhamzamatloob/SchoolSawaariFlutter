@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:provider/provider.dart';
 import 'package:school_sawaari_app/constants.dart';
+import 'package:school_sawaari_app/data_handler/app_data.dart';
 import 'package:school_sawaari_app/screens/parent_home/pages/home_page.dart';
 import 'package:school_sawaari_app/screens/parent_home/pages/payment_page.dart';
 import 'package:school_sawaari_app/screens/parent_home/pages/tracking_page.dart';
@@ -54,45 +56,48 @@ class _ParentBottomNavigationState extends State<ParentBottomNavigation> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        key: _bottomNavigationKey,
-        index: _pageIndex,
-        height: 50.0,
-        items: [
-          Icon(
-            Icons.home,
-            size: 30.0,
-            color: kPrimaryColor,
-          ),
-          Icon(
-            Icons.my_location,
-            size: 30.0,
-            color: kPrimaryColor,
-          ),
-          Icon(
-            Icons.payment,
-            size: 30.0,
-            color: kPrimaryColor,
-          ),
-          Icon(
-            Icons.person_rounded,
-            size: 30.0,
-            color: kPrimaryColor,
-          ),
-        ],
-        backgroundColor: Colors.white,
-        buttonBackgroundColor: Colors.white70,
-        color: hexColor,
-        animationDuration: Duration(milliseconds: 400),
-        onTap: (int tappedIndex) {
-          setState(() {
-            _showPage = _pageChooser(tappedIndex);
-          });
-        },
-      ),
-      body: Container(
-        child: _showPage,
+    return ChangeNotifierProvider<AppData>(
+      create: (context) => AppData(),
+      child: Scaffold(
+        bottomNavigationBar: CurvedNavigationBar(
+          key: _bottomNavigationKey,
+          index: _pageIndex,
+          height: 50.0,
+          items: [
+            Icon(
+              Icons.home,
+              size: 30.0,
+              color: kPrimaryColor,
+            ),
+            Icon(
+              Icons.my_location,
+              size: 30.0,
+              color: kPrimaryColor,
+            ),
+            Icon(
+              Icons.payment,
+              size: 30.0,
+              color: kPrimaryColor,
+            ),
+            Icon(
+              Icons.person_rounded,
+              size: 30.0,
+              color: kPrimaryColor,
+            ),
+          ],
+          backgroundColor: Colors.white,
+          buttonBackgroundColor: Colors.white70,
+          color: hexColor,
+          animationDuration: Duration(milliseconds: 400),
+          onTap: (int tappedIndex) {
+            setState(() {
+              _showPage = _pageChooser(tappedIndex);
+            });
+          },
+        ),
+        body: Container(
+          child: _showPage,
+        ),
       ),
     );
   }

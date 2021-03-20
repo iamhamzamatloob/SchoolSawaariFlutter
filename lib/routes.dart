@@ -29,5 +29,5 @@ final Map<String, WidgetBuilder> routes = {
   DriverBottomNavigation.routeName: (context) => DriverBottomNavigation(),
   Verifications.routeName: (context) => Verifications(),
   DriverEditProfile.routeName: (context) => DriverEditProfile(),
-  ParentEditProfile.routeName: (context) => ParentEditProfile()
+  ParentEditProfile.routeName: (context) => ParentEditProfile(),
 };

@@ -1,12 +1,13 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:school_sawaari_app/constants.dart';
+import 'package:school_sawaari_app/data_handler/app_data.dart';
+import 'file:///C:/Users/HAMZA/AndroidStudioProjects/SchoolSawaari/lib/screens/search_screen/search_screen.dart';
 import 'package:school_sawaari_app/widgets/divider.dart';
-import 'package:school_sawaari_app/assistants/request_assistant.dart';
 import 'package:school_sawaari_app/assistants/assistant_methods.dart';
 
 class TrackingPage extends StatefulWidget {
@@ -36,12 +37,13 @@ class _TrackingPageState extends State<TrackingPage> {
      CameraPosition cameraPosition = new CameraPosition(target: latLngPosition,zoom: 14);
      newGoogleMapController.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
-     String address = await AssistantMethods.searchCoordinateAddress(position);
+     String address = await AssistantMethods.searchCoordinateAddress(position, context);
      print("This is your Address :: " + address);
    }
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -117,32 +119,38 @@ class _TrackingPageState extends State<TrackingPage> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(5.0),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black54,
-                            blurRadius: 6.0,
-                            spreadRadius: 0.5,
-                            offset: Offset(0.7, 0.7),
-                          ),
-                        ],
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          children: [
-                            Icon(
-                              Icons.search,
-                              color: kPrimaryColor,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeNotifierProvider.value(value: Provider.of<AppData>(context),
+                        child: SearchScreen(),)));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 6.0,
+                              spreadRadius: 0.5,
+                              offset: Offset(0.7, 0.7),
                             ),
-                            SizedBox(
-                              width: 10.0,
-                            ),
-                            Text('Search Drop Off')
                           ],
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.search,
+                                color: kPrimaryColor,
+                              ),
+                              SizedBox(
+                                width: 10.0,
+                              ),
+                              Text('Search Drop Off')
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -155,11 +163,15 @@ class _TrackingPageState extends State<TrackingPage> {
                           Icons.home,
                           color: kPrimaryColor,
                         ),
-                        SizedBox(height: 12.0),
+                        SizedBox(width: 12.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text('Add Home'),
+                            Text(
+                              Provider.of<AppData>(context).pickUpLocation != null ?
+                              Provider.of<AppData>(context).pickUpLocation.placeName
+                                  : 'Add Home',
+                            ),
                             SizedBox(
                               height: 4.0,
                             ),
@@ -189,7 +201,7 @@ class _TrackingPageState extends State<TrackingPage> {
                           Icons.work,
                           color: kPrimaryColor,
                         ),
-                        SizedBox(height: 12.0),
+                        SizedBox(width: 12.0),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

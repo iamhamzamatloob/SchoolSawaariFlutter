@@ -1,5 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:school_sawaari_app/data_handler/app_data.dart';
 import 'package:school_sawaari_app/screens/parent_home/p_bottom_navigation.dart';
 import 'package:school_sawaari_app/screens/splash/splash_screen.dart';
 import 'methods/firebase_methods.dart';
