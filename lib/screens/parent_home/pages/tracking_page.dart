@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:school_sawaari_app/constants.dart';
 import 'package:school_sawaari_app/data_handler/app_data.dart';
+import 'package:school_sawaari_app/models/address.dart';
 import 'file:///C:/Users/HAMZA/AndroidStudioProjects/SchoolSawaari/lib/screens/search_screen/search_screen.dart';
 import 'package:school_sawaari_app/widgets/divider.dart';
 import 'package:school_sawaari_app/assistants/assistant_methods.dart';
@@ -20,6 +21,9 @@ class TrackingPage extends StatefulWidget {
 class _TrackingPageState extends State<TrackingPage> {
   Completer<GoogleMapController> _controllerGoogleMap = Completer();
   GoogleMapController newGoogleMapController;
+  AppData placeAddress;
+
+  Address adrs=Address();
 
   static final CameraPosition _kGooglePlex =
       CameraPosition(target: LatLng(30.6628055, 73.024696), zoom: 14.4746);
@@ -43,7 +47,7 @@ class _TrackingPageState extends State<TrackingPage> {
 
   @override
   Widget build(BuildContext context) {
-
+    AppData _appData=Provider.of(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -121,8 +125,8 @@ class _TrackingPageState extends State<TrackingPage> {
                     ),
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeNotifierProvider.value(value: Provider.of<AppData>(context),
-                        child: SearchScreen(),)));
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeNotifierProvider.value(value:_appData,
+                          child: SearchScreen(),)));
                       },
                       child: Container(
                         decoration: BoxDecoration(
