@@ -123,7 +123,7 @@ class _TrackingPageState extends State<TrackingPage> {
                     SizedBox(
                       height: 20.0,
                     ),
-                    GestureDetector(
+                    Provider.of<AppData>(context).pickUpLocation != null ?  GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChangeNotifierProvider.value(value:_appData,
                           child: SearchScreen(),)));
@@ -157,7 +157,7 @@ class _TrackingPageState extends State<TrackingPage> {
                           ),
                         ),
                       ),
-                    ),
+                    ):Container(child: Center(child: Text("Please Wait..."),),),
                     SizedBox(
                       height: 24.0,
                     ),
